@@ -36,7 +36,6 @@ function printPlrHP () {
 }
 
 function getPlayer () {
-    console.log(playerClick);
     if (playerClick == "darthMaul") {
         var player = DarthMaul;
     }
@@ -85,14 +84,14 @@ $("#darthMaul").on("click",function() {
         Plyr2 = getPlayer ();
         pickedsecond = true;
     }
-    else if (!pickedthird) {
+    else if (!pickedthird && defDead) {
         $("#darthMaul").remove();
         $("#defenderArea").append('<div class="card w-100 mycard" style="width: 2rem;"><img class="card-img-top" src="assets/images/Darth-Maul-02-icon.png" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Darth Maul</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">'+ DarthMaul.charHP + "HP</li></ul></div>");
         Plyr2 = getPlayer ();
         defDead = false;
         pickedthird = true;
     }
-    else {
+    else if (!pickedLast && defDead) {
         $("#darthMaul").remove();
         $("#defenderArea").append('<div class="card w-100 mycard" style="width: 2rem;"><img class="card-img-top" src="assets/images/Darth-Maul-02-icon.png" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Darth Maul</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">'+ DarthMaul.charHP + "HP</li></ul></div>");
         Plyr2 = getPlayer ();
@@ -115,14 +114,14 @@ $("#rey").on("click",function() {
         Plyr2 = getPlayer ();
         pickedsecond = true;
     }
-    else if (!pickedthird) {
+    else if (!pickedthird && defDead) {
         $("#rey").remove();
         $("#defenderArea").append('<div class="card w-100 mycard" style="width: 2rem;"><img class="card-img-top" src="assets/images/main-thumb-t-1785517-200-boztfctkwxbzmfjwurneimbimaluhaxk.jpeg" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Rey</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">'+ Rey.charHP + "HP</li></ul></div>");
         Plyr2 = getPlayer ();
         defDead = false;
         pickedthird = true;
     }
-    else {
+    else if (!pickedLast && defDead) {
         $("#rey").remove();
         $("#defenderArea").append('<div class="card w-100 mycard" style="width: 2rem;"><img class="card-img-top" src="assets/images/main-thumb-t-1785517-200-boztfctkwxbzmfjwurneimbimaluhaxk.jpeg" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Rey</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">'+ Rey.charHP + "HP</li></ul></div>");
         Plyr2 = getPlayer ();
@@ -145,14 +144,14 @@ $("#emperorPalp").on("click",function() {
         Plyr2 = getPlayer ();
         pickedsecond = true;
     }
-    else if (!pickedthird) {
+    else if (!pickedthird && defDead) {
         $("#emperorPalp").remove();
         $("#defenderArea").append('<div class="card w-100 mycard" style="width: 2rem;"><img class="card-img-top" src="assets/images/rendition1.img.jpg" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Emperor</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">' + Emperor.charHP + "HP</li></ul></div>");
         Plyr2 = getPlayer ();
         defDead = false;
         pickedthird = true;
     }
-    else {
+    else if (!pickedLast && defDead) {
         $("#emperorPalp").remove();
         $("#defenderArea").append('<div class="card w-100 mycard" style="width: 2rem;"><img class="card-img-top" src="assets/images/rendition1.img.jpg" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Emperor</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">' + Emperor.charHP + "HP</li></ul></div>");
         Plyr2 = getPlayer ();
@@ -175,14 +174,14 @@ $("#chewbacca").on("click",function() {
         Plyr2 = getPlayer ();
         pickedsecond = true;
     }
-    else if (!pickedthird) {
+    else if (!pickedthird && defDead) {
         $("#chewbacca").remove();
         $("#defenderArea").append('<div class="card w-100 mycard" style="width: 2rem;"><img class="card-img-top" src="assets/images/ChewbaccaROTS.jpg" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Chewbacca</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">'+ Chewbacca.charHP + "HP</li></ul></div>");
         Plyr2 = getPlayer ();
         defDead = false;
         pickedthird = true;
     }
-    else {
+    else if (!pickedLast && defDead) {
         $("#chewbacca").remove();
         $("#defenderArea").append('<div class="card w-100 mycard" style="width: 2rem;"><img class="card-img-top" src="assets/images/ChewbaccaROTS.jpg" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Chewbacca</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">'+ Chewbacca.charHP + "HP</li></ul></div>");
         Plyr2 = getPlayer ();
@@ -203,9 +202,7 @@ $("#attack").on("click", function() {
                 location.reload();
             }
             if (Plyr2.charHP <= 0) {
-                console.log("Dudes dead!!!!")
                 playersLeft -= 1;
-                console.log(playersLeft);
                 $("#defenderArea").empty();
                 defDead = true;
                 if (playersLeft > 0) {
@@ -220,8 +217,14 @@ $("#attack").on("click", function() {
                 }
             } 
         }
-        else { 
+        else if (!pickedfirst) { 
             alert("No player picked!");
+        }
+        else if (!pickedsecond) {
+            alert("You haven't picked an enemy yet!");
+        }
+        else {
+            alert("Pick another enemy!");
         }
     }
     else {

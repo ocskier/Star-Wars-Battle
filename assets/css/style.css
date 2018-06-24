@@ -40,9 +40,12 @@ section {
 .battle-area {
     min-height: 400px;
 }
-
+.mybutton {
+    padding: 8px 14px;
+}
 #darthMaul, #rey,#emperorPalp, #chewbacca {
     min-width: 140px;
+    margin: 3px;
 }
 #attack {
     padding-top: 75px;
@@ -68,4 +71,10 @@ section {
     line-height: 60px;
     background-color: #666666;
     border-top: 8px solid #4aaaa5;
+}
+
+@media screen and (max-width: 576px) {
+    #attack {
+        padding: 20px;
+    }
 }
