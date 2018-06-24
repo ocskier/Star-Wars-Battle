@@ -17,6 +17,9 @@ console.log(Emperor);
 console.log(Chewbacca);
 
 printPlrHP();
+setTimeout(function () {
+    alert("Pick a player for yourself!");
+}, 2000);
 
 function createPlyrAttr (name) {
     var charname = name;
@@ -67,8 +70,6 @@ function wasAttacked (defPlr,offPwr){
     return thisPlr;
 }
 
-console.log(Plyr1);
-console.log(Plyr2);
 
 $("#darthMaul").on("click",function() {
     playerClick = "darthMaul";
@@ -77,6 +78,9 @@ $("#darthMaul").on("click",function() {
         Plyr1 = getPlayer();
         $("#playerArea").append('<div class="card w-100 myoffcard" style="width: 2rem;"><img class="card-img-top" src="assets/images/Darth-Maul-02-icon.png" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Darth Maul</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">'+ DarthMaul.charHP + "HP</li></ul></div>");
         pickedfirst = true;
+        setTimeout(function () {
+            alert("Pick an enemy player!");
+        }, 800);
     } 
     else if (!pickedsecond) {
         $("#darthMaul").remove();
@@ -203,7 +207,7 @@ $("#attack").on("click", function() {
                     location.reload();
                 }, 800);
             }
-            if (Plyr2.charHP <= 0) {
+            else if (Plyr2.charHP <= 0) {
                 playersLeft -= 1;
                 $("#defenderArea").empty();
                 defDead = true;
