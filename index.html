@@ -16,28 +16,33 @@
         
     <header>
             <div id="myjumbotron" class="jumbotron jumbotron-fluid">
-                <button class="btn"><h1 class="display-4">Star Wars Fight Game</h1></button>
+                <h1 class="display-4">Star Wars Fight Game</h1>
                 <br>
             </div>
     </header>
     
     <section class="container">
-        <div class = "row">
-            <div id = "playerArea" class="col-sm-3">
-                
+        <div class = "row battle-area">
+            <div class="col-sm-3">
+                <h1>Player Area</h1>
+                <div id = "playerArea">
+
+                </div> 
             </div>
             <div class="col-sm-2">
-                    <div id="attack">
-                        <button class = "btn btn-secondary resetbutton">Attack</button>
-                    </div>
+                <div id="attack">
+                    <button type = "button" class = "btn btn-outline-danger btn-lg">Attack</button>
+                </div>
             </div>
-        </div>
-        <div class = "row">
-                <div id = "defenderArea" class="col-sm-2">
-                
-                </div>
-                <div class="col-sm">
-                </div>
+            <div class="col-sm-3">
+                <h1>Enemy Area</h1>    
+                <div id = "defenderArea">
+                    
+                </div>     
+            </div>
+            <div class = "col-sm">
+
+            </div>
         </div>
         <div class= "row">
             <div id = "darthMaul" class ="col-sm-2">
@@ -80,7 +85,7 @@
                 <div class="card w-100 mycard" style="width: 2rem;">
                     <img class="card-img-top" src="assets/images/ChewbaccaROTS.jpg" alt="Card image cap">
                     <div class="card-body" style="padding: 5px 0 0 0;">
-                        <h5 class="card-title">Chewbacca</h5>
+                        <h5 class="card-title">Chewy</h5>
                         <p class="card-text"></p>
                     </div>
                     <ul class="list-group list-group-flush">

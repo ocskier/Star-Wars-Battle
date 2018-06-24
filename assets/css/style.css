@@ -16,27 +16,36 @@ body {
 }
 
 #myjumbotron {
-    width: 100%;
+    margin: 0 auto;
+    max-width: 50%;
     padding: 0 0 25px 0;
     text-align: center;
     background: transparent;
 }
-
+h1 {
+    background-color: lightgray;
+    padding-bottom: 10px;
+}
 section {
     min-height: calc(100vh - 70px);
     justify-content: space-evenly;
     text-align: center;
     width:100%;
 }
-.bordered {
-    border: 2px solid blue;
-}
+
+
 .row {
     padding: 20px;
 }
+.battle-area {
+    min-height: 400px;
+}
 
+#darthMaul, #rey,#emperorPalp, #chewbacca {
+    min-width: 140px;
+}
 #attack {
-    padding: 25px;
+    padding-top: 75px;
 }
 .myspan {
     padding-top: 10px;

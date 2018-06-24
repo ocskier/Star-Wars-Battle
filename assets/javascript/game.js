@@ -5,6 +5,9 @@ var Chewbacca= createPlyrAttr("Chewbacca");
 var playersLeft = 3;
 var pickedfirst = false;
 var pickedsecond = false;
+var pickedthird = false;
+var pickedLast = false;
+var defDead = false;
 var Plyr1 = {};
 var Plyr2 = {};
 
@@ -82,7 +85,20 @@ $("#darthMaul").on("click",function() {
         Plyr2 = getPlayer ();
         pickedsecond = true;
     }
-    
+    else if (!pickedthird) {
+        $("#darthMaul").remove();
+        $("#defenderArea").append('<div class="card w-100 mycard" style="width: 2rem;"><img class="card-img-top" src="assets/images/Darth-Maul-02-icon.png" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Darth Maul</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">'+ DarthMaul.charHP + "HP</li></ul></div>");
+        Plyr2 = getPlayer ();
+        defDead = false;
+        pickedthird = true;
+    }
+    else {
+        $("#darthMaul").remove();
+        $("#defenderArea").append('<div class="card w-100 mycard" style="width: 2rem;"><img class="card-img-top" src="assets/images/Darth-Maul-02-icon.png" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Darth Maul</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">'+ DarthMaul.charHP + "HP</li></ul></div>");
+        Plyr2 = getPlayer ();
+        defDead = false;
+        pickedLast = true;
+    }
 });
 
 $("#rey").on("click",function() {
@@ -99,7 +115,20 @@ $("#rey").on("click",function() {
         Plyr2 = getPlayer ();
         pickedsecond = true;
     }
-    
+    else if (!pickedthird) {
+        $("#rey").remove();
+        $("#defenderArea").append('<div class="card w-100 mycard" style="width: 2rem;"><img class="card-img-top" src="assets/images/main-thumb-t-1785517-200-boztfctkwxbzmfjwurneimbimaluhaxk.jpeg" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Rey</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">'+ Rey.charHP + "HP</li></ul></div>");
+        Plyr2 = getPlayer ();
+        defDead = false;
+        pickedthird = true;
+    }
+    else {
+        $("#rey").remove();
+        $("#defenderArea").append('<div class="card w-100 mycard" style="width: 2rem;"><img class="card-img-top" src="assets/images/main-thumb-t-1785517-200-boztfctkwxbzmfjwurneimbimaluhaxk.jpeg" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Rey</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">'+ Rey.charHP + "HP</li></ul></div>");
+        Plyr2 = getPlayer ();
+        defDead = false;
+        pickedLast = true;
+    }
 });
 
 $("#emperorPalp").on("click",function() {
@@ -115,6 +144,20 @@ $("#emperorPalp").on("click",function() {
         $("#defenderArea").append('<div class="card w-100 mycard" style="width: 2rem;"><img class="card-img-top" src="assets/images/rendition1.img.jpg" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Emperor</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">' + Emperor.charHP + "HP</li></ul></div>");
         Plyr2 = getPlayer ();
         pickedsecond = true;
+    }
+    else if (!pickedthird) {
+        $("#emperorPalp").remove();
+        $("#defenderArea").append('<div class="card w-100 mycard" style="width: 2rem;"><img class="card-img-top" src="assets/images/rendition1.img.jpg" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Emperor</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">' + Emperor.charHP + "HP</li></ul></div>");
+        Plyr2 = getPlayer ();
+        defDead = false;
+        pickedthird = true;
+    }
+    else {
+        $("#emperorPalp").remove();
+        $("#defenderArea").append('<div class="card w-100 mycard" style="width: 2rem;"><img class="card-img-top" src="assets/images/rendition1.img.jpg" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Emperor</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">' + Emperor.charHP + "HP</li></ul></div>");
+        Plyr2 = getPlayer ();
+        defDead = false;
+        pickedLast = true;
     }
 });
 
@@ -132,28 +175,56 @@ $("#chewbacca").on("click",function() {
         Plyr2 = getPlayer ();
         pickedsecond = true;
     }
-    
+    else if (!pickedthird) {
+        $("#chewbacca").remove();
+        $("#defenderArea").append('<div class="card w-100 mycard" style="width: 2rem;"><img class="card-img-top" src="assets/images/ChewbaccaROTS.jpg" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Chewbacca</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">'+ Chewbacca.charHP + "HP</li></ul></div>");
+        Plyr2 = getPlayer ();
+        defDead = false;
+        pickedthird = true;
+    }
+    else {
+        $("#chewbacca").remove();
+        $("#defenderArea").append('<div class="card w-100 mycard" style="width: 2rem;"><img class="card-img-top" src="assets/images/ChewbaccaROTS.jpg" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Chewbacca</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">'+ Chewbacca.charHP + "HP</li></ul></div>");
+        Plyr2 = getPlayer ();
+        defDead = false;
+        pickedLast = true;
+    }
 });
 
 $("#attack").on("click", function() {
     if (playersLeft >0) {
-        Plyr2 = wasAttacked(Plyr2,Plyr1.totalAttackPwr);
-        Plyr1 = ifAttack(Plyr1,Plyr2.counterAttackPwr);
-        console.log(Plyr1);
-        console.log(Plyr2);
-        if (Plyr2.charHP <= 0) {
-            console.log("Dudes dead!!!!")
-            playersLeft -= 1;
-            console.log(playersLeft);
-            $("#defenderArea").empty();
-
+        if (pickedsecond && !defDead) {
+            Plyr2 = wasAttacked(Plyr2,Plyr1.totalAttackPwr);
+            Plyr1 = ifAttack(Plyr1,Plyr2.counterAttackPwr);
+            console.log(Plyr1);
+            console.log(Plyr2);
+            if (Plyr1.charHP <=0) {
+                alert("Your dead!!");
+                location.reload();
+            }
+            if (Plyr2.charHP <= 0) {
+                console.log("Dudes dead!!!!")
+                playersLeft -= 1;
+                console.log(playersLeft);
+                $("#defenderArea").empty();
+                defDead = true;
+                if (playersLeft > 0) {
+                setTimeout(function () {
+                    alert("Pick another enemy!")}, 800);
+                }
+                else {
+                    setTimeout(function () {
+                        alert("You won!!!");
+                        location.reload();
+                    }, 800);
+                }
+            } 
         }
-        if (Plyr1.charHP <=0) {
-            console.log("Your dead!!")
+        else { 
+            alert("No player picked!");
         }
     }
-    
     else {
-        console.log("Everybodys dead!!!!")
-}
+        alert("Everybodys dead!!!!");
+    }
 });
