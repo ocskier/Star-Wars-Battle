@@ -198,8 +198,10 @@ $("#attack").on("click", function() {
             console.log(Plyr1);
             console.log(Plyr2);
             if (Plyr1.charHP <=0) {
-                alert("Your dead!!");
-                location.reload();
+                setTimeout(function () {
+                    alert("Your dead!!!");
+                    location.reload();
+                }, 800);
             }
             if (Plyr2.charHP <= 0) {
                 playersLeft -= 1;
