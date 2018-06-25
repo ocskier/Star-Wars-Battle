@@ -23,9 +23,9 @@ setTimeout(function () {
 
 function createPlyrAttr (Name) {
     var charname = Name;
-    var hp = Math.floor(Math.random()*102)+19;
-    var num2 = Math.floor(Math.random()*6)+5;
-    var num3 = Math.floor(Math.random()*6)+5;
+    var hp = Math.floor(Math.random()*100)+100;
+    var num2 = Math.floor(Math.random()*10)+10;
+    var num3 = Math.floor(Math.random()*10)+10;
     var beenChosen = false;
     var thisPlr = {Name: charname, charHP: hp,totalAttackPwr: num2, baseAttackPwr: num2, counterAttackPwr: num3};
     return thisPlr;
@@ -55,6 +55,18 @@ function getPlayer () {
     return player;
 }
 
+function moveNextEnemy () {
+    Plyr2 = getPlayer ();
+    $("#battle-txt").empty();
+    $("#battle-txt").append("<p>Press Attack!</p>");
+}
+
+function movePlayer () {
+    Plyr1 = getPlayer();
+    pickedfirst = true;
+    $("#battle-txt").append("<p>Pick an enemy player!</p>");
+}
+
 function ifAttack (offPlr,defName, defPwr) {
     thisPlr = offPlr;
     $("#battle-txt").append("<p>" + defName + " did " + defPwr + " damage to you!");
@@ -72,115 +84,85 @@ function wasAttacked (defPlr,offPwr){
     return thisPlr;
 }
 
+function removePic (pick) {
+    $("#" + pick).remove();
+}
 
 $("#darthMaul").on("click",function() {
     playerClick = "darthMaul";
+    removePic(playerClick);
     if (!pickedfirst) {
-        $("#darthMaul").remove();
-        Plyr1 = getPlayer();
         $("#playerArea").append('<div class="card w-100 myoffcard" style="width: 2rem;"><img class="card-img-top" src="assets/images/Darth-Maul-02-icon.png" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Darth Maul</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">'+ DarthMaul.charHP + "HP</li></ul></div>");
-        pickedfirst = true;
-        $("#battle-txt").append("<p>Pick an enemy player!</p>");
+        movePlayer();
     } 
     else if (!pickedsecond) {
-        $("#darthMaul").remove();
-        $("#battle-txt").empty();
         $("#defenderArea").append('<div class="card w-100 mycard" style="width: 2rem;"><img class="card-img-top" src="assets/images/Darth-Maul-02-icon.png" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Darth Maul</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">'+ DarthMaul.charHP + "HP</li></ul></div>");
-        Plyr2 = getPlayer ();
-        pickedsecond = true;
-        $("#battle-txt").append("<p>Press Attack!</p>");
+        moveNextEnemy();
+        pickedsecond = true;    
     }
     else if (!pickedthird && defDead) {
-        $("#darthMaul").remove();
-        $("#battle-txt").empty();
         $("#defenderArea").append('<div class="card w-100 mycard" style="width: 2rem;"><img class="card-img-top" src="assets/images/Darth-Maul-02-icon.png" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Darth Maul</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">'+ DarthMaul.charHP + "HP</li></ul></div>");
-        Plyr2 = getPlayer ();
+        moveNextEnemy();
         defDead = false;
         pickedthird = true;
-        $("#battle-txt").append("<p>Press Attack!</p>");
     }
     else if (!pickedLast && defDead) {
-        $("#darthMaul").remove();
-        $("#battle-txt").empty();
         $("#defenderArea").append('<div class="card w-100 mycard" style="width: 2rem;"><img class="card-img-top" src="assets/images/Darth-Maul-02-icon.png" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Darth Maul</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">'+ DarthMaul.charHP + "HP</li></ul></div>");
-        Plyr2 = getPlayer ();
+        moveNextEnemy();
         defDead = false;
         pickedLast = true;
-        $("#battle-txt").append("<p>Press Attack!</p>");
     }
 });
 
 $("#rey").on("click",function() {
     playerClick = "rey";
+    removePic(playerClick);
     if (!pickedfirst) {
-        $("#rey").remove();
-        Plyr1 = getPlayer();
         $("#playerArea").append('<div class="card w-100 myoffcard" style="width: 2rem;"><img class="card-img-top" src="assets/images/main-thumb-t-1785517-200-boztfctkwxbzmfjwurneimbimaluhaxk.jpeg" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Rey</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">'+ Rey.charHP + "HP</li></ul></div>");
-        pickedfirst = true;
-        $("#battle-txt").append("<p>Pick an enemy player!</p>");
+        movePlayer();
     } 
     else if (!pickedsecond) {
-        $("#rey").remove();
-        $("#battle-txt").empty();
         $("#defenderArea").append('<div class="card w-100 mycard" style="width: 2rem;"><img class="card-img-top" src="assets/images/main-thumb-t-1785517-200-boztfctkwxbzmfjwurneimbimaluhaxk.jpeg" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Rey</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">'+ Rey.charHP + "HP</li></ul></div>");
-        Plyr2 = getPlayer ();
+        moveNextEnemy();
         pickedsecond = true;
-        $("#battle-txt").append("<p>Press Attack!</p>");
     }
     else if (!pickedthird && defDead) {
-        $("#rey").remove();
-        $("#battle-txt").empty();
         $("#defenderArea").append('<div class="card w-100 mycard" style="width: 2rem;"><img class="card-img-top" src="assets/images/main-thumb-t-1785517-200-boztfctkwxbzmfjwurneimbimaluhaxk.jpeg" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Rey</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">'+ Rey.charHP + "HP</li></ul></div>");
-        Plyr2 = getPlayer ();
+        moveNextEnemy();
         defDead = false;
         pickedthird = true;
-        $("#battle-txt").append("<p>Press Attack!</p>");
     }
     else if (!pickedLast && defDead) {
-        $("#rey").remove();
-        $("#battle-txt").empty();
         $("#defenderArea").append('<div class="card w-100 mycard" style="width: 2rem;"><img class="card-img-top" src="assets/images/main-thumb-t-1785517-200-boztfctkwxbzmfjwurneimbimaluhaxk.jpeg" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Rey</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">'+ Rey.charHP + "HP</li></ul></div>");
-        Plyr2 = getPlayer ();
+        moveNextEnemy();
         defDead = false;
         pickedLast = true;
-        $("#battle-txt").append("<p>Press Attack!</p>");
     }
 });
 
 $("#emperorPalp").on("click",function() {
     playerClick = "emperorPalp";
+    removePic(playerClick);
     if (!pickedfirst) {
-        $("#emperorPalp").remove();
         $("#playerArea").append('<div class="card w-100 myoffcard" style="width: 2rem;"><img class="card-img-top" src="assets/images/rendition1.img.jpg" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Emperor</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">' + Emperor.charHP + "HP</li></ul></div>");
-        Plyr1 = getPlayer();
-        pickedfirst = true;
-        $("#battle-txt").append("<p>Pick an enemy player!</p>");
+        movePlayer();
     }
     else if (!pickedsecond) {
-        $("#emperorPalp").remove();
-        $("#battle-txt").empty();
         $("#defenderArea").append('<div class="card w-100 mycard" style="width: 2rem;"><img class="card-img-top" src="assets/images/rendition1.img.jpg" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Emperor</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">' + Emperor.charHP + "HP</li></ul></div>");
-        Plyr2 = getPlayer ();
+        moveNextEnemy();
         pickedsecond = true;
-        $("#battle-txt").append("<p>Press Attack!</p>");
     }
     else if (!pickedthird && defDead) {
-        $("#emperorPalp").remove();
-        $("#battle-txt").empty();
         $("#defenderArea").append('<div class="card w-100 mycard" style="width: 2rem;"><img class="card-img-top" src="assets/images/rendition1.img.jpg" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Emperor</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">' + Emperor.charHP + "HP</li></ul></div>");
-        Plyr2 = getPlayer ();
+        moveNextEnemy();
         defDead = false;
         pickedthird = true;
-        $("#battle-txt").append("<p>Press Attack!</p>");
     }
     else if (!pickedLast && defDead) {
-        $("#emperorPalp").remove();
-        $("#battle-txt").empty();
         $("#defenderArea").append('<div class="card w-100 mycard" style="width: 2rem;"><img class="card-img-top" src="assets/images/rendition1.img.jpg" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Emperor</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">' + Emperor.charHP + "HP</li></ul></div>");
-        Plyr2 = getPlayer ();
+        moveNextEnemy();
         defDead = false;
         pickedLast = true;
-        $("#battle-txt").append("<p>Press Attack!</p>");
     }
 });
 
@@ -188,36 +170,28 @@ $("#chewbacca").on("click",function() {
     playerClick = "chewbacca";
     if (!pickedfirst) {
         $("#chewbacca").remove();
-        Plyr1 = getPlayer();
         $("#playerArea").append('<div class="card w-100 myoffcard" style="width: 2rem;"><img class="card-img-top" src="assets/images/ChewbaccaROTS.jpg" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Chewbacca</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">'+ Chewbacca.charHP + "HP</li></ul></div>");
-        pickedfirst = true;
-        $("#battle-txt").append("<p>Pick an enemy player!</p>");
+        movePlayer();
     } 
     else if (!pickedsecond) {
         $("#chewbacca").remove();
-        $("#battle-txt").empty();
         $("#defenderArea").append('<div class="card w-100 mycard" style="width: 2rem;"><img class="card-img-top" src="assets/images/ChewbaccaROTS.jpg" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Chewbacca</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">'+ Chewbacca.charHP + "HP</li></ul></div>");
-        Plyr2 = getPlayer ();
+        moveNextEnemy();
         pickedsecond = true;
-        $("#battle-txt").append("<p>Press Attack!</p>");
     }
     else if (!pickedthird && defDead) {
         $("#chewbacca").remove();
-        $("#battle-txt").empty();
         $("#defenderArea").append('<div class="card w-100 mycard" style="width: 2rem;"><img class="card-img-top" src="assets/images/ChewbaccaROTS.jpg" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Chewbacca</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">'+ Chewbacca.charHP + "HP</li></ul></div>");
-        Plyr2 = getPlayer ();
+        moveNextEnemy();
         defDead = false;
         pickedthird = true;
-        $("#battle-txt").append("<p>Press Attack!</p>");
     }
     else if (!pickedLast && defDead) {
         $("#chewbacca").remove();
-        $("#battle-txt").empty();
         $("#defenderArea").append('<div class="card w-100 mycard" style="width: 2rem;"><img class="card-img-top" src="assets/images/ChewbaccaROTS.jpg" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Chewbacca</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">'+ Chewbacca.charHP + "HP</li></ul></div>");
-        Plyr2 = getPlayer ();
+        moveNextEnemy();
         defDead = false;
         pickedLast = true;
-        $("#battle-txt").append("<p>Press Attack!</p>");
     }
 });
 
