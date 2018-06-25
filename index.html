@@ -13,22 +13,26 @@
 </head>
 
 <body>
-        
+    <!-- My Jumbotron Header -->
     <header>
             <div id="myjumbotron" class="jumbotron jumbotron-fluid">
                 <h1 class="display-4">Star Wars RPG</h1>
                 <br>
             </div>
     </header>
-    
+
+    <!-- My main section for the game contents -->
     <section class="container">
+    <!-- A first row to hold the battle area of the game -->
         <div class = "row battle-area">
+    <!-- This column holds the players character card         -->
             <div class="col-sm-4 col-md-3" style="border: 10px solid green;">
                 <h1>Player Area</h1>
                 <div id = "playerArea">
 
                 </div> 
             </div>
+    <!-- This column holds the attack button as well as the real-time battle info -->
             <div class="col-sm-3 col-md-3">
                 <div>
                     <button type = "button" class = "btn btn-outline-danger btn-lg attackbtn">Attack</button>
@@ -38,6 +42,7 @@
                     </div>
                 </div>
             </div>
+    <!-- This column holds the current enemy fighter character card         -->
             <div class="col-sm-4 col-md-3" style="border: 10px solid red;">
                 <h1>Enemy Area</h1>    
                 <div id = "defenderArea">
@@ -47,6 +52,7 @@
             <div class = "col-sm col-md">
             </div>
         </div>
+    <!-- A second row to hold the set of character cards waiting for battle -->
         <div class= "row">
             <div id = "darthMaul" class ="col-sm-5 col-md-2">
                 <div class="card w-100 mycard" style="width: 2rem;">
@@ -102,7 +108,7 @@
         </div>
 
     </section>
-        
+    <!-- My copyright footer        -->
     <footer class="footer my-footer">
             <div class="container">
                 <span>@Copyright </span>

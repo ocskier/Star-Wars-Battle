@@ -1,4 +1,4 @@
-/* Header */
+
 * {
     box-sizing: border-box;
 }
@@ -14,7 +14,7 @@ body {
     -o-background-size: cover;
     background-size: cover;
 }
-
+/* Header */
 #myjumbotron {
     margin: 0 auto;
     max-width: 50%;
@@ -26,6 +26,8 @@ h1 {
     background-color: lightgray;
     padding-bottom: 10px;
 }
+
+/* Main Section */
 section {
     min-height: calc(100vh - 70px);
     justify-content: space-evenly;
@@ -37,8 +39,18 @@ section {
 .row {
     padding: 20px;
 }
+
+/* Battle Row */
 .battle-area {
     min-height: 400px;
+}
+
+.mycard {
+    border: 2px solid red;
+}
+
+.myoffcard {
+    border: 3px solid green;
 }
 
 .attackbtn {
@@ -52,6 +64,8 @@ section {
     background: lightgray;
     margin: 40px 10px 30px 10px;
 }
+
+/* Character Row */
 #darthMaul, #rey,#emperorPalp, #chewbacca {
     min-width: 140px;
     margin: 3px;
@@ -60,13 +74,8 @@ section {
 .myspan {
     padding-top: 10px;
 }
-.mycard {
-    border: 2px solid red;
-}
-.myoffcard {
-    border: 3px solid green;
-}
 
+/* Footer */
 .my-footer {
     text-align: center;
     clear: both;
@@ -79,6 +88,7 @@ section {
     border-top: 8px solid #4aaaa5;
 }
 
+/* Media Query to adjust look */
 @media screen and (max-width: 576px) {
     #attack {
         padding: 20px;

@@ -1,3 +1,4 @@
+// Global Variables for player objects, booleans, and current player and enemy fighters
 var DarthMaul = createPlyrAttr("Darth Maul");
 var Rey = createPlyrAttr("Rey");
 var Emperor = createPlyrAttr("The Emperor");
@@ -11,16 +12,21 @@ var defDead = false;
 var Plyr1 = {};
 var Plyr2 = {};
 
+// Printing to the console all the attributes of the four characters
 console.log(DarthMaul);
 console.log(Rey);
 console.log(Emperor);
 console.log(Chewbacca);
 
+// Generating the random attributes for all 4 players
 printPlrHP();
+
+// Starting the game prompt and a slight delay for page to load
 setTimeout(function () {
     alert("Pick a player for yourself!");
 }, 1000);
 
+// A f(x) for generating a characters random attributes for hp, current, base, and counter attack powers
 function createPlyrAttr (Name) {
     var charname = Name;
     var hp = Math.floor(Math.random()*100)+100;
@@ -31,6 +37,7 @@ function createPlyrAttr (Name) {
     return thisPlr;
 }
 
+// A f(x) for printing initial hp for each player card on screen
 function printPlrHP () {
     $("#darthMaul .mycard ul li").text(DarthMaul.charHP + " HP");
     $("#rey .mycard ul li").text(Rey.charHP + " HP");
@@ -38,6 +45,7 @@ function printPlrHP () {
     $("#chewbacca .mycard ul li").text(Chewbacca.charHP + " HP"); 
 }
 
+// A f(x) to assign the players attribute holding object to his card when clicked on
 function getPlayer () {
     if (playerClick == "darthMaul") {
         var player = DarthMaul;
@@ -55,22 +63,26 @@ function getPlayer () {
     return player;
 }
 
+// A f(x) to remove the pic of the character from the holding row when picked
 function removePic (pick) {
     $("#" + pick).remove();
 }
 
+// A f(x) for assigning a character and his card to the player area and asking for next choice 
 function movePlayer () {
     Plyr1 = getPlayer();
     pickedfirst = true;
     $("#battle-txt").append("<p>Pick an enemy player!</p>");
 }
 
+// A f(x) for assigning a character and his card to the enemy area and asking to attack
 function moveNextEnemy () {
     Plyr2 = getPlayer ();
     $("#battle-txt").empty();
     $("#battle-txt").append("<p>Press Attack!</p>");
 }
 
+// A f(x) for adjusting the hp of player after attack
 function ifAttack (offPlr,defName, defPwr) {
     thisPlr = offPlr;
     $("#battle-txt").append("<p>" + defName + " did " + defPwr + " damage to you!");
@@ -85,6 +97,7 @@ function ifAttack (offPlr,defName, defPwr) {
         return thisPlr;
 }
 
+// A f(x) for adjusting the hp of enemy after attack
 function wasAttacked (defPlr,offPwr){
     thisPlr = defPlr;
     $("#battle-txt").append("<p>You did " + offPwr + " damage to " + thisPlr.Name +"!");
@@ -98,7 +111,7 @@ function wasAttacked (defPlr,offPwr){
         return thisPlr;
 }
 
-
+// Click functions for each character for moving their respective cards based on click order and battle status
 
 $("#darthMaul").on("click",function() {
     playerClick = "darthMaul";
@@ -228,6 +241,7 @@ $("#chewbacca").on("click",function() {
     }
 });
 
+// Attack click function for adjusting hp, losing and winning game, dealing with attack and no enemy, etc.
 $(".attackbtn").on("click", function() {
     if (enemyLeft >0) {
         if (pickedsecond && !defDead) {
