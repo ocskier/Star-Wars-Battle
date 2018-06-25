@@ -76,16 +76,26 @@ function ifAttack (offPlr,defName, defPwr) {
     $("#battle-txt").append("<p>" + defName + " did " + defPwr + " damage to you!");
     thisPlr.totalAttackPwr += thisPlr.baseAttackPwr;
     thisPlr.charHP -= defPwr;
-    $("#playerArea .myoffcard ul li").text(thisPlr.charHP + " HP");
-    return thisPlr;
+    if (thisPlr.charHP < 0) {
+        $("#playerArea .myoffcard ul li").text("0 HP");
+    }
+    else {
+        $("#playerArea .myoffcard ul li").text(thisPlr.charHP + " HP");
+    }
+        return thisPlr;
 }
 
 function wasAttacked (defPlr,offPwr){
     thisPlr = defPlr;
     $("#battle-txt").append("<p>You did " + offPwr + " damage to " + thisPlr.Name +"!");
     thisPlr.charHP -= offPwr;
-    $("#defenderArea .mycard ul li").text(thisPlr.charHP + " HP");
-    return thisPlr;
+    if (thisPlr.charHP < 0) {
+        $("#defenderArea .mycard ul li").text("0 HP");
+    }
+    else {
+        $("#defenderArea .mycard ul li").text(thisPlr.charHP + " HP");
+    }
+        return thisPlr;
 }
 
 
