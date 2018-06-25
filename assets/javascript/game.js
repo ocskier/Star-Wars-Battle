@@ -2,7 +2,7 @@ var DarthMaul = createPlyrAttr("Darth Maul");
 var Rey = createPlyrAttr("Rey");
 var Emperor = createPlyrAttr("The Emperor");
 var Chewbacca= createPlyrAttr("Chewbacca");
-var playersLeft = 3;
+var enemyLeft = 3;
 var pickedfirst = false;
 var pickedsecond = false;
 var pickedthird = false;
@@ -25,7 +25,7 @@ function createPlyrAttr (Name) {
     var charname = Name;
     var hp = Math.floor(Math.random()*100)+100;
     var num2 = Math.floor(Math.random()*10)+10;
-    var num3 = Math.floor(Math.random()*10)+10;
+    var num3 = Math.floor(Math.random()*10)+15;
     var beenChosen = false;
     var thisPlr = {Name: charname, charHP: hp,totalAttackPwr: num2, baseAttackPwr: num2, counterAttackPwr: num3};
     return thisPlr;
@@ -55,16 +55,20 @@ function getPlayer () {
     return player;
 }
 
-function moveNextEnemy () {
-    Plyr2 = getPlayer ();
-    $("#battle-txt").empty();
-    $("#battle-txt").append("<p>Press Attack!</p>");
+function removePic (pick) {
+    $("#" + pick).remove();
 }
 
 function movePlayer () {
     Plyr1 = getPlayer();
     pickedfirst = true;
     $("#battle-txt").append("<p>Pick an enemy player!</p>");
+}
+
+function moveNextEnemy () {
+    Plyr2 = getPlayer ();
+    $("#battle-txt").empty();
+    $("#battle-txt").append("<p>Press Attack!</p>");
 }
 
 function ifAttack (offPlr,defName, defPwr) {
@@ -84,30 +88,34 @@ function wasAttacked (defPlr,offPwr){
     return thisPlr;
 }
 
-function removePic (pick) {
-    $("#" + pick).remove();
-}
+
 
 $("#darthMaul").on("click",function() {
     playerClick = "darthMaul";
-    removePic(playerClick);
+    newOffDiv = $('<div class="card w-100 myoffcard" style="width: 2rem;"><img class="card-img-top" src="assets/images/Darth-Maul-02-icon.png" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Darth Maul</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">'+ DarthMaul.charHP + "HP</li></ul></div>");
+    newDefDiv = $('<div class="card w-100 mycard" style="width: 2rem;"><img class="card-img-top" src="assets/images/Darth-Maul-02-icon.png" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Darth Maul</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">'+ DarthMaul.charHP + "HP</li></ul></div>");
+
     if (!pickedfirst) {
-        $("#playerArea").append('<div class="card w-100 myoffcard" style="width: 2rem;"><img class="card-img-top" src="assets/images/Darth-Maul-02-icon.png" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Darth Maul</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">'+ DarthMaul.charHP + "HP</li></ul></div>");
+        removePic(playerClick);
+        $("#playerArea").append(newOffDiv);
         movePlayer();
     } 
     else if (!pickedsecond) {
-        $("#defenderArea").append('<div class="card w-100 mycard" style="width: 2rem;"><img class="card-img-top" src="assets/images/Darth-Maul-02-icon.png" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Darth Maul</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">'+ DarthMaul.charHP + "HP</li></ul></div>");
+        removePic(playerClick);
+        $("#defenderArea").append(newDefDiv);
         moveNextEnemy();
         pickedsecond = true;    
     }
     else if (!pickedthird && defDead) {
-        $("#defenderArea").append('<div class="card w-100 mycard" style="width: 2rem;"><img class="card-img-top" src="assets/images/Darth-Maul-02-icon.png" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Darth Maul</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">'+ DarthMaul.charHP + "HP</li></ul></div>");
+        removePic(playerClick);
+        $("#defenderArea").append(newDefDiv);
         moveNextEnemy();
         defDead = false;
         pickedthird = true;
     }
     else if (!pickedLast && defDead) {
-        $("#defenderArea").append('<div class="card w-100 mycard" style="width: 2rem;"><img class="card-img-top" src="assets/images/Darth-Maul-02-icon.png" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Darth Maul</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">'+ DarthMaul.charHP + "HP</li></ul></div>");
+        removePic(playerClick);
+        $("#defenderArea").append(newDefDiv);
         moveNextEnemy();
         defDead = false;
         pickedLast = true;
@@ -116,24 +124,30 @@ $("#darthMaul").on("click",function() {
 
 $("#rey").on("click",function() {
     playerClick = "rey";
-    removePic(playerClick);
+    newOffDiv = $('<div class="card w-100 myoffcard" style="width: 2rem;"><img class="card-img-top" src="assets/images/main-thumb-t-1785517-200-boztfctkwxbzmfjwurneimbimaluhaxk.jpeg" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Rey</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">'+ Rey.charHP + "HP</li></ul></div>");
+    newDefDiv = $('<div class="card w-100 mycard" style="width: 2rem;"><img class="card-img-top" src="assets/images/main-thumb-t-1785517-200-boztfctkwxbzmfjwurneimbimaluhaxk.jpeg" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Rey</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">'+ Rey.charHP + "HP</li></ul></div>");
+
     if (!pickedfirst) {
-        $("#playerArea").append('<div class="card w-100 myoffcard" style="width: 2rem;"><img class="card-img-top" src="assets/images/main-thumb-t-1785517-200-boztfctkwxbzmfjwurneimbimaluhaxk.jpeg" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Rey</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">'+ Rey.charHP + "HP</li></ul></div>");
+        removePic(playerClick);
+        $("#playerArea").append(newOffDiv);
         movePlayer();
     } 
     else if (!pickedsecond) {
-        $("#defenderArea").append('<div class="card w-100 mycard" style="width: 2rem;"><img class="card-img-top" src="assets/images/main-thumb-t-1785517-200-boztfctkwxbzmfjwurneimbimaluhaxk.jpeg" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Rey</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">'+ Rey.charHP + "HP</li></ul></div>");
+        removePic(playerClick);
+        $("#defenderArea").append(newDefDiv);
         moveNextEnemy();
         pickedsecond = true;
     }
     else if (!pickedthird && defDead) {
-        $("#defenderArea").append('<div class="card w-100 mycard" style="width: 2rem;"><img class="card-img-top" src="assets/images/main-thumb-t-1785517-200-boztfctkwxbzmfjwurneimbimaluhaxk.jpeg" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Rey</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">'+ Rey.charHP + "HP</li></ul></div>");
+        removePic(playerClick);
+        $("#defenderArea").append(newDefDiv);
         moveNextEnemy();
         defDead = false;
         pickedthird = true;
     }
     else if (!pickedLast && defDead) {
-        $("#defenderArea").append('<div class="card w-100 mycard" style="width: 2rem;"><img class="card-img-top" src="assets/images/main-thumb-t-1785517-200-boztfctkwxbzmfjwurneimbimaluhaxk.jpeg" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Rey</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">'+ Rey.charHP + "HP</li></ul></div>");
+        removePic(playerClick);
+        $("#defenderArea").append(newDefDiv);
         moveNextEnemy();
         defDead = false;
         pickedLast = true;
@@ -142,24 +156,30 @@ $("#rey").on("click",function() {
 
 $("#emperorPalp").on("click",function() {
     playerClick = "emperorPalp";
-    removePic(playerClick);
+    newOffDiv = $('<div class="card w-100 myoffcard" style="width: 2rem;"><img class="card-img-top" src="assets/images/rendition1.img.jpg" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Emperor</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">' + Emperor.charHP + "HP</li></ul></div>");
+    newDefDiv = $('<div class="card w-100 mycard" style="width: 2rem;"><img class="card-img-top" src="assets/images/rendition1.img.jpg" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Emperor</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">' + Emperor.charHP + "HP</li></ul></div>");
+    
     if (!pickedfirst) {
-        $("#playerArea").append('<div class="card w-100 myoffcard" style="width: 2rem;"><img class="card-img-top" src="assets/images/rendition1.img.jpg" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Emperor</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">' + Emperor.charHP + "HP</li></ul></div>");
+        removePic(playerClick);
+        $("#playerArea").append(newOffDiv);
         movePlayer();
     }
     else if (!pickedsecond) {
-        $("#defenderArea").append('<div class="card w-100 mycard" style="width: 2rem;"><img class="card-img-top" src="assets/images/rendition1.img.jpg" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Emperor</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">' + Emperor.charHP + "HP</li></ul></div>");
+        removePic(playerClick);
+        $("#defenderArea").append(newDefDiv);
         moveNextEnemy();
         pickedsecond = true;
     }
     else if (!pickedthird && defDead) {
-        $("#defenderArea").append('<div class="card w-100 mycard" style="width: 2rem;"><img class="card-img-top" src="assets/images/rendition1.img.jpg" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Emperor</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">' + Emperor.charHP + "HP</li></ul></div>");
+        removePic(playerClick);
+        $("#defenderArea").append(newDefDiv);
         moveNextEnemy();
         defDead = false;
         pickedthird = true;
     }
     else if (!pickedLast && defDead) {
-        $("#defenderArea").append('<div class="card w-100 mycard" style="width: 2rem;"><img class="card-img-top" src="assets/images/rendition1.img.jpg" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Emperor</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">' + Emperor.charHP + "HP</li></ul></div>");
+        removePic(playerClick);
+        $("#defenderArea").append(newDefDiv);
         moveNextEnemy();
         defDead = false;
         pickedLast = true;
@@ -168,27 +188,30 @@ $("#emperorPalp").on("click",function() {
 
 $("#chewbacca").on("click",function() {
     playerClick = "chewbacca";
+    newOffDiv = $('<div class="card w-100 myoffcard" style="width: 2rem;"><img class="card-img-top" src="assets/images/ChewbaccaROTS.jpg" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Chewy</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">'+ Chewbacca.charHP + "HP</li></ul></div>");
+    newDefDiv = $('<div class="card w-100 mycard" style="width: 2rem;"><img class="card-img-top" src="assets/images/ChewbaccaROTS.jpg" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Chewy</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">'+ Chewbacca.charHP + "HP</li></ul></div>");
+
     if (!pickedfirst) {
-        $("#chewbacca").remove();
-        $("#playerArea").append('<div class="card w-100 myoffcard" style="width: 2rem;"><img class="card-img-top" src="assets/images/ChewbaccaROTS.jpg" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Chewbacca</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">'+ Chewbacca.charHP + "HP</li></ul></div>");
+        removePic(playerClick);
+        $("#playerArea").append(newOffDiv);
         movePlayer();
     } 
     else if (!pickedsecond) {
-        $("#chewbacca").remove();
-        $("#defenderArea").append('<div class="card w-100 mycard" style="width: 2rem;"><img class="card-img-top" src="assets/images/ChewbaccaROTS.jpg" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Chewbacca</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">'+ Chewbacca.charHP + "HP</li></ul></div>");
+        removePic(playerClick);
+        $("#defenderArea").append(newDefDiv);
         moveNextEnemy();
         pickedsecond = true;
     }
     else if (!pickedthird && defDead) {
-        $("#chewbacca").remove();
-        $("#defenderArea").append('<div class="card w-100 mycard" style="width: 2rem;"><img class="card-img-top" src="assets/images/ChewbaccaROTS.jpg" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Chewbacca</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">'+ Chewbacca.charHP + "HP</li></ul></div>");
+        removePic(playerClick);
+        $("#defenderArea").append(newDefDiv);
         moveNextEnemy();
         defDead = false;
         pickedthird = true;
     }
     else if (!pickedLast && defDead) {
-        $("#chewbacca").remove();
-        $("#defenderArea").append('<div class="card w-100 mycard" style="width: 2rem;"><img class="card-img-top" src="assets/images/ChewbaccaROTS.jpg" alt="Card image cap"><div class="card-body" style="padding: 5px 0 0 0;"><h5 class="card-title">Chewbacca</h5><p class="card-text"></p></div><ul class="list-group list-group-flush"><li class="list-group-item">'+ Chewbacca.charHP + "HP</li></ul></div>");
+        removePic(playerClick);
+        $("#defenderArea").append(newDefDiv);
         moveNextEnemy();
         defDead = false;
         pickedLast = true;
@@ -196,7 +219,7 @@ $("#chewbacca").on("click",function() {
 });
 
 $(".attackbtn").on("click", function() {
-    if (playersLeft >0) {
+    if (enemyLeft >0) {
         if (pickedsecond && !defDead) {
             $("#battle-txt").empty();
             Plyr2 = wasAttacked(Plyr2,Plyr1.totalAttackPwr);
@@ -208,12 +231,12 @@ $(".attackbtn").on("click", function() {
                 }, 800);
             }
             else if (Plyr2.charHP <= 0) {
-                playersLeft -= 1;
+                enemyLeft--;
                 $("#defenderArea").empty();
                 $("#battle-txt").empty();
                 $("#battle-txt").append("<p>You killed " + Plyr2.Name + "!</p>");
                 defDead = true;
-                if (playersLeft > 0) {
+                if (enemyLeft > 0) {
                     $("#battle-txt").append("<p>Pick another enemy!</p>");
                 }
                 else {
