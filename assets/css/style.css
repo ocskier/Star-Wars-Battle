@@ -84,8 +84,8 @@ section {
     color: #fff;
     color: #ccc;
     line-height: 60px;
-    background-color: #666666;
-    border-top: 8px solid #4aaaa5;
+    background-color: darkgray;
+    border-top: 8px solid rgb(62,62,92);
 }
 
 /* Media Query to adjust look */
