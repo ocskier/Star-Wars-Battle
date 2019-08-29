@@ -1,9 +1,10 @@
-# unit-4-game
+# Star Wars Battle
+
 Star Wars Battle Game
 
 * [`index.html] (unit-4-game/index.html)
 
-### Instructions
+## Instructions
 
 * This is a RPG (role-playing-game) where the user chooses from among 4 predetermined Star Wars themed characters and then
 battles the remaining 3 to the death.
@@ -22,4 +23,4 @@ battles the remaining 3 to the death.
 
 * If all enemies are killed the user wins and the game resets.
 
-* Have fun! This game can also be found in my portfolio @ https://ocskier.github.io/Bootstrap-Portfolio/portfolio.html
+* Have fun! This game can also be found in my portfolio @ <https://ocskier.github.io/Bootstrap-Portfolio/portfolio.html>
