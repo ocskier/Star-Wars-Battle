@@ -17,7 +17,7 @@ battles the remaining 3 to the death.
 
 * The user will then precede to attack via the button until either the player or enemy perishes.
 
-* If the player is killed the game reloads 
+* If the player is killed the game reloads
 
 * If the first enemy is killed the user then selects another enemy to battle who then moves to the enemy area
 
